@@ -4,7 +4,7 @@
 const fs = require("fs");
 const util = require("util");
 
-//we not can use promise objects instead of callbacks
+//we now can use promise objects instead of callbacks
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
