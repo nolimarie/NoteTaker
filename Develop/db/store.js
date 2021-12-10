@@ -18,11 +18,14 @@ class Store {
     getNotes() {
         return this.read().then((notes) => {
             //return the parsedNotes
+            const parsedNotes = JSON.parse(data);
+            parsedNotes.push(newNote);
         });
     }
 
     addNote(note) {
         //this will be code to add a note to db.json
+        return writeFileAsync("db/db.json", "utf8");
     }
 
     //write the rest of your methods in this manner
