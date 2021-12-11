@@ -1,6 +1,6 @@
 //create a class called store with methods that read json file,  get, add,
-
 //native node module, that allows us access to the file system, readFile, writeFile
+const { json } = require("express");
 const fs = require("fs");
 const { getEnabledCategories } = require('trace_events');
 const util = require("util");
@@ -20,28 +20,26 @@ class Store {
         return writeFileAsync("db/db.json", JSON.stringify(note))
     }
 
-    getNotes() {
-        return this.read().then((notes) => {
-            //return the parsedNotes
-            const parsedNotes = JSON.parse(notes);
-            parsedNotes.push(newNote);
-        });
-    }
-
     addNote(note) {
         //this will be code to add a note to db.json
-        const {title, text} = note
+        const { title, text } = note
 
         if (!title || !text) {
             throw new Error("title and text cannot be blank")
         }
 
-        const newNote = {title, text}
+        const newNote = { title, text }
 
         return this.getNotes()
             .then(notes => [...notes, newNote])
             .then(updatedNotes => this.write(updatedNotes))
             .then(() => this.newNote)
+    }
+    getNotes() {
+        return this.read().then(notes => {
+            //return the parsedNotes
+            return JSON.parse(notes) || [];
+        })
     }
 }
  
