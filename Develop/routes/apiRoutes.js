@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const store = require("../db/store");
 
+
 // `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
 //  /api/notes
 router.get("/notes", (req, res) => {
@@ -17,5 +18,6 @@ router.post("/notes", (req, res) => {
 });
 
 //create routes that get notes, post notes, delete(bonus)
+
 
 module.exports = router;

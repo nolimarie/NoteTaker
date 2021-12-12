@@ -6,6 +6,7 @@ const { getEnabledCategories } = require('trace_events');
 const util = require("util");
 
 
+
 //we now can use promise objects instead of callbacks
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -40,6 +41,11 @@ class Store {
             //return the parsedNotes
             return JSON.parse(notes) || [];
         })
+    }
+    removeNote(id) {
+        return this.getNotes()
+            .then(notes => notes.filter(note => note.id !== id))
+            .then(keptNotes => this.write(keptNotes))
     }
 }
  
