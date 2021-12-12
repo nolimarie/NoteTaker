@@ -42,11 +42,11 @@ class Store {
             return JSON.parse(notes) || [];
         })
     }
-    removeNote(id) {
-        return this.getNotes()
-            .then(notes => notes.filter(note => note.id !== id))
-            .then(keptNotes => this.write(keptNotes))
-    }
+    // removeNote(id) {
+    //     return this.getNotes()
+    //         .then(notes => notes.filter(note => note.id !== id))
+    //         .then(keptNotes => this.write(keptNotes))
+    // }
 }
  
 //export a newly created object with the methods on the prototype
